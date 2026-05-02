@@ -16,7 +16,7 @@ func FirstWorkflow(ctx workflow.Context, input string) (string, error) {
 	allActivities := activities.Activities{}
 	err := workflow.ExecuteActivity(
 		ctx,
-		allActivities.FirstActivity,
+		allActivities.SayHello,
 		input,
 	).Get(ctx, &result)
 	if err != nil {

@@ -26,6 +26,7 @@ func main() {
 	worker := temporalWorker.New(c, constants.MainTaskQueue, temporalWorker.Options{})
 	allActivities := &activities.Activities{}
 	worker.RegisterWorkflow(workflows.FirstWorkflow)
+	worker.RegisterWorkflow(workflows.LongRunning)
 	worker.RegisterActivity(allActivities)
 
 	err = worker.Start()
