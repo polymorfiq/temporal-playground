@@ -27,6 +27,7 @@ func main() {
 	allActivities := &activities.Activities{}
 	worker.RegisterWorkflow(workflows.FirstWorkflow)
 	worker.RegisterWorkflow(workflows.LongRunning)
+	worker.RegisterWorkflow(workflows.SpiderWebsite)
 	worker.RegisterActivity(allActivities)
 
 	err = worker.Start()
