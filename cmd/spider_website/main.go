@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 	"temporal-playground/constants"
 	"temporal-playground/workflows"
 	"time"
@@ -24,7 +25,7 @@ func main() {
 		ID:                 "spider-website-example",
 		TaskQueue:          constants.MainTaskQueue,
 		WorkflowRunTimeout: (24 * time.Hour) * 30,
-	}, workflows.SpiderWebsite, "https", "www.w3schools.com")
+	}, workflows.SpiderWebsite, os.Args[1])
 
 	if err != nil {
 		log.Fatal("Failed to start spider workflow", err)
