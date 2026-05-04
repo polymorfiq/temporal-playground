@@ -124,7 +124,6 @@ func (a *JobSiteActivities) RetrieveAmazonJobs(ctx context.Context) ([]AmazonJob
 		}
 	}
 
-	fmt.Printf("JOBS: %s\n", amazonJobs)
 	return amazonJobs, nil
 }
 
