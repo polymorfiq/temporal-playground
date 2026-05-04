@@ -9,7 +9,7 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-func SpiderWebsite(ctx workflow.Context, spiderUrl string) ([]specs.RobotRules, error) {
+func RetrieveRobotsTxt(ctx workflow.Context, spiderUrl string) ([]specs.RobotRules, error) {
 	ctx = workflow.WithActivityOptions(ctx, workflow.ActivityOptions{
 		ScheduleToCloseTimeout: time.Minute * 30,
 	})
@@ -37,16 +37,6 @@ func SpiderWebsite(ctx workflow.Context, spiderUrl string) ([]specs.RobotRules, 
 		allActivities.ParseRobots,
 		robotsContents,
 	).Get(ctx, &robotsTxt)
-	if err != nil {
-		return nil, err
-	}
-
-	err = workflow.ExecuteActivity(
-		ctx,
-		allActivities.CheckRobotsAllow,
-		robotsTxt,
-		spiderUrl,
-	).Get(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
